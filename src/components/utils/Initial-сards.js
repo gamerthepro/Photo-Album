@@ -25,3 +25,5 @@ export const initialCards = [
 		coment: 'Пекин'
 	}
 ];
+
+export default initialCards;
