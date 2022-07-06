@@ -12,7 +12,6 @@ function Main() {
 						{initialCards.map((itm) => (
 							<Card
 								link={itm.link}
-								coment={itm.coment}
 							/>))}
 						</ul>
 					</div>
