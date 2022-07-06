@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './Main';
-import ImagePopupForm from './ImagePopupForm';
+// import ImagePopupForm from './ImagePopupForm';
 
 function App() {
 	return (
