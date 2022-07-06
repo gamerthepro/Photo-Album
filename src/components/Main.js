@@ -9,10 +9,10 @@ function Main() {
 				<main className='content page__content'>
 					<div className='elements'>
 						<ul className='elements__contener'>
-						{initialCards.map((obj) => (
+						{initialCards.map((itm) => (
 							<Card
-								link={obj.link}
-								coment={obj.coment}
+								link={itm.link}
+								coment={itm.coment}
 							/>))}
 						</ul>
 					</div>
