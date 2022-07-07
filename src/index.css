@@ -5,6 +5,9 @@
 @import url("./blocks/elements/__contener/elements__contener.css");
 @import url("./blocks/element/element.css");
 @import url("./blocks/element/__image/element__image.css");
+@import url("./blocks/element/__like/element__like.css");
+@import url("./blocks/element/__like/_off/element__like_off.css.css");
+@import url("./blocks/element/__like/_on/element__like_on.css.css");
 @import url("./blocks/popup/popup.css");
 @import url("./blocks/popup/__open/popup__open.css");
 @import url("./blocks/popup/__container/popup__container.css");

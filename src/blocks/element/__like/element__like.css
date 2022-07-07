@@ -1,0 +1,8 @@
+.element__like {
+	display: flex;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 21px;
+	height: 20px;
+}

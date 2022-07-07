@@ -5,6 +5,7 @@ function Card(props) {
 		<section className='element-cards'>
 			<li className='element'>
 				<img className='element__image' src={props.link} alt='картинка'/>
+				<div className='element__like element__like_off'></div>
 			</li>
 		</section>
 	)
