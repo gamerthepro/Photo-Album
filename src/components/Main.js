@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 // import { initialCards } from './utils/Initial-сards' //Локальная база данных
 
-function Main(props) {
+function Main({onClickCard}) {
 	//при помощи хука useState передаем данные в компонент Cards
 	const [initialCards, isInitialCards] = React.useState([])
 
@@ -22,10 +22,11 @@ function Main(props) {
 			<div className='page__container'>
 				<main className='content page__content'>
 					<div className='elements'>
-						<ul className='elements__contener' onClick={props.onClickCard}>
+						<ul className='elements__contener'>
 						{initialCards.map((itm) => (
 							<Card
 							//прокидываем данные в Card при помощи props
+							onClickCard={onClickCard}
 							link={itm.link}		
 							/>))}
 						</ul>
