@@ -2,21 +2,7 @@ import React from 'react';
 import Card from './Card';
 // import { initialCards } from './utils/Initial-сards' //Локальная база данных
 
-function Main({onClickCard}) {
-	//при помощи хука useState передаем данные в компонент Cards
-	const [initialCards, isInitialCards] = React.useState([])
-
-	//используем конструкцию React.useEffect(() => {запрос на сервер}, []); - что бы запрос выполнялся один.
-	React.useEffect(() => {
-		fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/initialCards")
-			.then((res) => {
-				return res.json();
-			})
-			.then((json) =>{
-				isInitialCards(json)
-			});
-	}, []);
-
+function Main({onClickCard, initialCards}) {
 	return (
 		<body className='page'>
 			<div className='page__container'>
