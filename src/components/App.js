@@ -1,12 +1,19 @@
 import React from 'react';
 import Main from './Main';
-// import ImagePopupForm from './ImagePopupForm';
+import ImagePopupForm from './ImagePopupForm';
 
 function App() {
+	const [popupOpen, isPopupOpen] = React.useState(false);
+
 	return (
 		<>
-		<Main/>
-		{/* <ImagePopupForm/> */}
+		<Main
+			onClickCard={() => isPopupOpen(true)}
+		/>
+		{popupOpen ? <ImagePopupForm
+			onClose={() =>  isPopupOpen(false)}
+		/> : null
+		}
 		</>
 	)
 }
