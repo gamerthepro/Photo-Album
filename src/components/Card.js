@@ -18,11 +18,11 @@ function Card({link, onClickCard}) {
 				onClick={handleClick}
 				//вытаскиваем данные из props
 				src={link} alt='картинка'/>
-				<ul className='element__card'>
+				<ul className='elements__card'>
+					<li className='element__comments'/>
 					<li 
 					//в зависимости от состояния хука useState присваиваем соответсвующую картинку(Like) 
 					onClick={onClickLike} className={isAdd ? 'element__like element__like_on' : 'element__like element__like_off'}/>
-					<li/>
 				</ul>
 			</li>
 		</section>
