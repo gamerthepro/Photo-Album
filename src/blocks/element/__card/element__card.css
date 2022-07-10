@@ -1,0 +1,9 @@
+.element__card {
+	display: flex;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	min-width: 21px;
+	max-height: 26px;
+	list-style-type: none;
+}
