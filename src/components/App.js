@@ -10,6 +10,9 @@ function App() {
 	//при помощи хука useState передаем данные (false) или (true)
 	const [popupOpen, isPopupOpen] = React.useState(false);
 
+	//при помощи хука useState передаем данные в компонент ImagePopupForm)
+	const [itemsCard, setitemsCard] = React.useState([]);
+
 	//используем конструкцию React.useEffect(() => {запрос на сервер}, []); - что бы запрос выполнялся один.
 	React.useEffect(() => {
 		fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/initialCards")
@@ -21,17 +24,22 @@ function App() {
 			});
 	}, []);
 
+	const clikCard = (obj) => {
+		isPopupOpen(true)
+		setitemsCard([...[], obj])
+	}
+
 	return (
 		<body className='page'>
 			<div className='page__container'>
 				<main className='content page__content'>
 					<div className='elements'>
 						<ul className='elements__contener' >
-						{initialCards.map((itm) => (
+						{initialCards.map((item) => (
 							<Card
 							//прокидываем данные в Card при помощи props
-							link={itm.link}	
-							onClickCard={() => isPopupOpen(true)}	
+							link={item.link}	
+							onClickCard={(obj) => clikCard(obj)}	
 							/>))}
 						</ul>
 					</div>
@@ -40,7 +48,7 @@ function App() {
 			{
 			//задаем условие при котором будет открываться или закрываться popup в зависимости от состояния хука useState
 			popupOpen ? <ImagePopupForm
-			initialCards={initialCards}
+			items={itemsCard}
 			onClose={() =>  isPopupOpen(false)}
 			/> : null
 			}

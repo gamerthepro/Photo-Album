@@ -6,12 +6,16 @@ function Card({link, onClickCard}) {
 
 	const onClickLike = () => setIsAdd(!isAdd);
 	
+	const handleClick = () => {
+		onClickCard({link})
+	}
+
 	return(
 		<section className='element-cards'>
 			<li className='element'>
 				<img className='element__image'
 				//открываем Popup при нажатии на картинку
-				onClick={onClickCard}
+				onClick={handleClick}
 				//вытаскиваем данные из props
 				src={link} alt='картинка'/>
 				<div onClick={onClickLike} 
