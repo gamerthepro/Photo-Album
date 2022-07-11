@@ -1,6 +1,12 @@
 import React from 'react';
 
 function ImagePopupCommentForm({onClose, items}) {
+	//при помощи хука useState передаем данные из input в title
+	const [addComment, setAddComment] = React.useState('')
+
+	const onChangeComment = (event) => {
+		setAddComment(event.target.value)
+	}
 
 	return (
 		<div className= "popup popup_type_image popup__open">
@@ -11,8 +17,8 @@ function ImagePopupCommentForm({onClose, items}) {
 					onClick={onClose}></button>
 					<img className="popup__img" src={items.link} alt={`Изображение места: ${items.link}`}/>
 					<div className="popup__comment">
-						<title className="popup__title">fwefwewefewfwfwfewefwfwefwefwfewfewtgwgw</title>
-						<input className="popup__input"></input>
+						<title className="popup__title">{addComment}</title>
+						<input className="popup__input" onChange={onChangeComment}></input>
 					</div>
 				</figure>
 			))}
