@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ImagePopupForm({onClose, items}) {
+function ImagePopupCommentForm({onClose, items}) {
 
 	return (
 		<div className= "popup popup_type_image popup__open">
@@ -17,4 +17,4 @@ function ImagePopupForm({onClose, items}) {
 	);
 }
 
-export default ImagePopupForm;
+export default ImagePopupCommentForm;

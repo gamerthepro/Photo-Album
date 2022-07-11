@@ -1,5 +1,5 @@
 import React from 'react';	
-import ImagePopupForm from './ImagePopupForm';
+import ImagePopupCommentForm from './ImagePopupCommentForm';
 import Card from './Card';
 // import { initialCards } from './utils/Initial-сards' //Локальная база данных
 
@@ -10,7 +10,7 @@ function App() {
 	//при помощи хука useState передаем данные (false) или (true)
 	const [popupOpen, isPopupOpen] = React.useState(false);
 
-	//при помощи хука useState передаем данные в компонент ImagePopupForm)
+	//при помощи хука useState передаем данные в компонент ImagePopupCommentForm)
 	const [itemsCard, setitemsCard] = React.useState([]);
 
 	//используем конструкцию React.useEffect(() => {запрос на сервер}, []); - что бы запрос выполнялся один.
@@ -47,7 +47,7 @@ function App() {
 			</div>
 			{
 			//задаем условие при котором будет открываться или закрываться popup в зависимости от состояния хука useState
-			popupOpen ? <ImagePopupForm
+			popupOpen ? <ImagePopupCommentForm
 			items={itemsCard}
 			onClose={() =>  isPopupOpen(false)}
 			/> : null
