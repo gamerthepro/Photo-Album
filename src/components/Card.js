@@ -14,12 +14,13 @@ function Card({link, onClickCard}) {
 		<section className='element-cards'>
 			<li className='element'>
 				<img className='element__image'
-				//открываем Popup при нажатии на картинку
-				onClick={handleClick}
 				//вытаскиваем данные из props
 				src={link} alt='картинка'/>
 				<ul className='elements__card'>
-					<li className='element__comments'/>
+					<li 
+					//открываем Popup при нажатии на картинку
+					onClick={handleClick}
+					className='element__comments'/>
 					<li 
 					//в зависимости от состояния хука useState присваиваем соответсвующую картинку(Like) 
 					onClick={onClickLike} className={isAdd ? 'element__like element__like_on' : 'element__like element__like_off'}/>
