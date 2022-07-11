@@ -10,9 +10,10 @@ function ImagePopupCommentForm({onClose, items}) {
 					//вешаем слушетель на кнопку который вызывает функцию onClose из props она в свою очередь закрывает popup
 					onClick={onClose}></button>
 					<img className="popup__img" src={items.link} alt={`Изображение места: ${items.link}`}/>
-					<figcaption className="popup__caption">
-						
-					</figcaption>
+					<div className="popup__comment">
+						<title className="popup__title">fwefwewefewfwfwfewefwfwefwefwfewfewtgwgw</title>
+						<input className="popup__input"></input>
+					</div>
 				</figure>
 			))}
 		</div>

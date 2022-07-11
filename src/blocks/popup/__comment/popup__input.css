@@ -1,0 +1,6 @@
+.popup__input {
+	display: flex;
+	flex-direction: column;
+	word-wrap: break-word;
+	width: 97%;
+}
