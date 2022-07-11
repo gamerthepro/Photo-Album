@@ -30,7 +30,7 @@ function App() {
 	}
 
 	return (
-		<body className='page'>
+		<div className='page'>
 			<div className='page__container'>
 				<main className='content page__content'>
 					<div className='elements'>
@@ -38,6 +38,7 @@ function App() {
 						{initialCards.map((item) => (
 							<Card
 							//прокидываем данные в Card при помощи props
+							key={item.link}
 							link={item.link}	
 							onClickCard={(obj) => clikCard(obj)}	
 							/>))}
@@ -52,7 +53,7 @@ function App() {
 			onClose={() =>  isPopupOpen(false)}
 			/> : null
 			}
-		</body>
+		</div>
 	);
 }
 
