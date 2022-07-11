@@ -1,6 +1,14 @@
 .popup__input {
 	display: flex;
-	flex-direction: column;
 	word-wrap: break-word;
-	width: 99%;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 17px;
+	width: 100%;
+	padding: 5px 0 5px;
+	border: none;
+	outline: none;
+	background-color: rgb(168, 170, 170);
+	cursor: pointer;
+	border-radius: 0 0 10px 10px;
 }

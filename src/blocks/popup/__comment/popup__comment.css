@@ -1,5 +1,15 @@
 .popup__comment {
+	display: flex;
+	flex-direction: column;
 	font-size: 12px;
 	line-height: 15px;
 	margin: 0;
+	width: 75vw;
+}
+
+@media screen and (max-width: 767px) {
+	.popup__comment {
+		width: 240px;
+		height: 300px;
+	}
 }

@@ -1,0 +1,6 @@
+.popup__button_cancel {
+	display: flex;
+	background-color: rgb(168, 170, 170);
+	margin-right: 1%;
+	border-bottom: none;
+}
