@@ -1,11 +1,36 @@
 import React from 'react';
 
 function ImagePopupCommentForm({onClose, items}) {
-	//при помощи хука useState передаем данные из input в title
-	const [addComment, setAddComment] = React.useState('')
+	//при помощи хука передаем данные из input в title
+	const [showComment, setShowComment] = React.useState('')
 
-	const onChangeComment = (event) => {
-		setAddComment(event.target.value)
+
+
+	// отправляем данные на сервер
+	React.useEffect(() => {
+		commitPush(showComment)
+	}, []);
+
+	const commitPush = (showComment) => {
+		if (showComment !== '') {
+			fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/comments", {
+				method: 'POST', // нужно указать метод запроса
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({comment: showComment})
+			})
+			.then(res => {
+				res.json(showComment);
+			})
+		}
+	}
+
+	const buttonClick = (e) => {
+		e.preventDefault(e);
+		commitPush();
+	}
+
+	const onInputChange = (e) => {
+		setShowComment(e.target.value)
 	}
 
 	return (
@@ -17,7 +42,7 @@ function ImagePopupCommentForm({onClose, items}) {
 					onClick={onClose}></button>
 					<img className="popup__img" src={items.link} alt={`Изображение места: ${items.link}`}/>
 					<div className="popup__comment">
-						<title className="popup__title">{addComment}</title>
+						<title className="popup__title"></title>
 						<input className="popup__input" 
 						type="text" 
 						minLength="0"
@@ -27,11 +52,11 @@ function ImagePopupCommentForm({onClose, items}) {
 						placeholder="добавить коментарий"
 						noValidate
 						required
-						onChange={onChangeComment}>
-						</input>
+						onChange={onInputChange}
+						></input>
 						<div className="popup__buttons">
 							<button className="popup__button popup__button_cancel">отменить</button>
-							<button className="popup__button popup__button_add">добавить</button>
+							<button className="popup__button popup__button_add" onClick={buttonClick}>добавить</button>
 						</div>
 					</div>
 				</div>
