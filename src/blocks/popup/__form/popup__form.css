@@ -1,4 +1,4 @@
-.popup__comment {
+.popup__form {
 	display: flex;
 	flex-direction: column;
 	font-size: 12px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 767px) {
-	.popup__comment {
+	.popup__form {
 		width: 240px;
 		height: 300px;
 	}
