@@ -2,10 +2,13 @@ import React from 'react';
 
 function ImagePopupCommentForm({onClose, items}) {
 	//При помощи этого хука передаём данные на сервер
-	const [onComment, setOnComment] = React.useState([])
+	const [onComment, setOnComment] = React.useState([{}])
 
 	//при помощи этого хука передаём данные(комментарии) в Doom
-	// const [showComments, setShowComments] = React.useState([])
+	// const [showComments, setShowComments] = React.useState(false)
+
+	//при помощи этого хука очищаем input
+	const [isClinInput, setIsClinInput] = React.useState(false)
 
 	React.useEffect(() => {
 		commitPush()// отправляем данные на сервер
@@ -23,7 +26,7 @@ function ImagePopupCommentForm({onClose, items}) {
 			})
 			.then(res => {
 				if (res.ok) {
-					return res.json(onComment);
+					return res.json(onComment)
 				} return console.log('данные не отправились на сервер')//улавливаем ошибку если данные не отправились на сервер
 			})
 		}
@@ -45,7 +48,8 @@ function ImagePopupCommentForm({onClose, items}) {
 		e.preventDefault(e);
 		commitPush(onComment);
 		// commitAdd()
-		setOnComment([{}])//очищаем input (value)
+		setOnComment([{}])
+		setIsClinInput(true)//очищаем input (value)
 	}
 
 	//передаём value(данные из input) в 
@@ -54,6 +58,7 @@ function ImagePopupCommentForm({onClose, items}) {
 			comment: e.target.value,
 			key: e.target.id
 		}])
+
 	}
 
 	return (
@@ -78,7 +83,7 @@ function ImagePopupCommentForm({onClose, items}) {
 						placeholder="добавить коментарий"
 						noValidate
 						required
-						value={Object.comment}
+						value={isClinInput ? '' : Object.comment}
 						onChange={onInputChange}
 						></input>
 						<div className="popup__buttons">
