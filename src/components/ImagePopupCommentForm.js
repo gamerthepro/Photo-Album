@@ -2,18 +2,18 @@ import React from 'react';
 
 function ImagePopupCommentForm({onClose, items}) {
 	//При помощи этого хука передаём данные на сервер
-	const [onComment, setOnComment] = React.useState([{}])
+	const [onComment, setOnComment] = React.useState('')
 
 	//при помощи этого хука передаём данные(комментарии) в Doom
-	// const [showComments, setShowComments] = React.useState(false)
+	//const [showComments, setShowComments] = React.useState(false)
 
 	//при помощи этого хука очищаем input
 	const [isClinInput, setIsClinInput] = React.useState(false)
 
 	React.useEffect(() => {
-		commitPush()// отправляем данные на сервер
+		commitPush(onComment)// отправляем данные на сервер
 		// commitAdd()
-	}, []);
+	});
 
 	
 
@@ -48,14 +48,14 @@ function ImagePopupCommentForm({onClose, items}) {
 		e.preventDefault(e);
 		commitPush(onComment);
 		// commitAdd()
-		setOnComment([{}])
 		setIsClinInput(true)//очищаем input (value)
 	}
 
 	//передаём value(данные из input) в 
 	const onInputChange = (e) => {
+		setIsClinInput(false)
 		setOnComment([{
-			comment: e.target.value,
+			commen: e.target.value,
 			key: e.target.id
 		}])
 
