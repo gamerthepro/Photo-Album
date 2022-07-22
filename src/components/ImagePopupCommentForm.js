@@ -1,64 +1,64 @@
 import React from 'react';
+import Comment from './Commet'
 
 function ImagePopupCommentForm({onClose, items}) {
-	//При помощи этого хука передаём данные на сервер
+	//При помощи этого хука передаём комментарий на сервер
 	const [onComment, setOnComment] = React.useState('')
+	//При помощи этого хука передаём ключ к комментарию на сервер
+	const [onKeyComment, setOnKeyComment] = React.useState('')
 
 	//при помощи этого хука передаём данные(комментарии) в Doom
-	//const [showComments, setShowComments] = React.useState(false)
+	const [showComments, setShowComments] = React.useState([])
 
 	//при помощи этого хука очищаем input
 	const [isClinInput, setIsClinInput] = React.useState(false)
 
 	React.useEffect(() => {
-		commitPush(onComment)// отправляем данные на сервер
-		// commitAdd()
-	});
+		commitPush(onComment, onKeyComment)// отправляем данные на сервер
+		addComment()
+	}, []);
 
-	
+	const addComment = () => {
+		fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/comments")
+			.then((res) => {
+				return res.json();
+			})
+			.then((json) =>{
+				setShowComments(json)
+			});
+	}
 
-	const commitPush = (onComment) => {
+	const commitPush = (onComment, onKeyComment) => {
 		if (onComment !== '') {
 			fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/comments", {
 				method: 'POST', // нужно указать метод запроса
 				headers: { "Content-Type": "application/json" },//указываем в каком виде досжна выглядеть структура данных
-				body: JSON.stringify(onComment)//переводим JSON формат в строку(так как всее данные по API запросам отправляються в JSON формате)
+				body: JSON.stringify({
+					comment: onComment,
+					key: onKeyComment
+				})//переводим JSON формат в строку(так как всее данные по API запросам отправляються в JSON формате)
 			})
 			.then(res => {
 				if (res.ok) {
-					return res.json(onComment)
+					return res.json(onComment, onKeyComment)
 				} return console.log('данные не отправились на сервер')//улавливаем ошибку если данные не отправились на сервер
 			})
 		}
 	}
 
-	// const commitAdd = () => {
-	// 	fetch("https://62c81bb08c90491c2caeccc3.mockapi.io/comments")
-	// 		.then((res) => {
-	// 			return res.json();
-	// 		})
-	// 		.then((json) =>{
-	// 			setShowComments(json)
-	// 			console.log(json)
-	// 		});
-	// }
-
 	//слушатель кнопки "отправить" на клик
 	const buttonClick = (e) => {
 		e.preventDefault(e);
-		commitPush(onComment);
-		// commitAdd()
+		commitPush(onComment, onKeyComment);
+		addComment()
 		setIsClinInput(true)//очищаем input (value)
 	}
 
 	//передаём value(данные из input) в 
 	const onInputChange = (e) => {
 		setIsClinInput(false)
-		setOnComment([{
-			commen: e.target.value,
-			key: e.target.id
-		}])
-
+		setOnComment(e.target.value)
+		setOnKeyComment(e.target.id)
 	}
 
 	return (
@@ -70,8 +70,13 @@ function ImagePopupCommentForm({onClose, items}) {
 					onClick={onClose}></button>
 					<img className="popup__img" src={items.link} alt={`Изображение места: ${items.link}`}/>
 					<div className="popup__form">
-						<ul className="popup__title">
-							<li className="popup__title"></li>
+						<ul className="popup__comments">
+						{showComments.map((item) => (
+							item.key === items.link ?
+								<Comment 
+								comment={item.comment}
+								/> : ''
+						))}
 						</ul>
 						<input className="popup__input" 
 						type="text" 
